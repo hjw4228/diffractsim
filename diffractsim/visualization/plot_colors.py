@@ -12,7 +12,7 @@ All rights reserved.
 
 """
 
-def plot_colors(self, rgb, figsize=(6, 6), xlim=None, ylim=None, text = None, units = mm, dark_background = True):
+def plot_colors(self, rgb, figsize=(6, 6), xlim=None, ylim=None, text = None, units = mm, dark_background = True, save_plot=False, filename='plot.jpg', hide_axis=False):
     """visualize the diffraction pattern colors with matplotlib"""
 
     from ..util.backend_functions import backend as bd
@@ -64,4 +64,12 @@ def plot_colors(self, rgb, figsize=(6, 6), xlim=None, ylim=None, text = None, un
         ],
         interpolation="spline36", origin = "lower"
     )
-    plt.show()
+    
+    if hide_axis: 
+        ax.axis('off')
+
+    if not save_plot: 
+        plt.show()
+    else: 
+        plt.savefig(filename)
+        plt.close()
